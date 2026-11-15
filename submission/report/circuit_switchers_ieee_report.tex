@@ -11,7 +11,7 @@
 \begin{document}
 \title{Circuit Switchers: Direct-Mapped Cache Controller\\\large Modern Computer Architecture - Project 6}
 \author{\IEEEauthorblockN{Guru Manohar Gupta, Harsith Priyan, Pranavi Mathur\\Yatin Singh, Dadi Dinesh}
-\IEEEauthorblockA{Department of CS and AI\\Newton School of Technology\\Phase I -- 14 November 2026}}
+\IEEEauthorblockA{Department of CS and AI\\Newton School of Technology\\Phase I -- 16 November 2026}}
 \maketitle
 \begin{abstract}
 Main-memory access can limit processor performance. Circuit Switchers implements a direct-mapped read-only cache in Verilog with 32-bit byte addresses, 64 lines and 16-byte blocks, for 1 KiB of data. A four-state controller returns one byte per request and refills the indexed line on a miss. Self-checking Icarus Verilog runs verified 331 completed reads and three reset cancellations using an independent residency model and deterministic memory contents. With the default simulated memory latency, hits and misses took two and eight clock cycles, respectively. Average memory access time ranged from 2.375 to 8.000 cycles across four workload traces. Synthesis evaluated the cache logic with an external memory interface.
@@ -122,7 +122,7 @@ The integrated read path passed directed and seeded workloads with byte-lane, re
 \begin{minipage}[t]{.485\textwidth}
 \begin{figure}[H]
 \centering
-\includegraphics[width=\linewidth,height=.31\textheight,keepaspectratio]{address_breakdown.pdf}
+\includegraphics[width=\linewidth,height=.31\textheight,keepaspectratio]{address_breakdown.png}
 \caption{Address fields and a worked example.}\label{fig:address_breakdown}
 \end{figure}
 \end{minipage}
@@ -164,5 +164,38 @@ The integrated read path passed directed and seeded workloads with byte-lane, re
 \centering
 \includegraphics[width=.98\textwidth,height=.37\textheight,keepaspectratio]{system_conflict.pdf}
 \caption{Conflict workload VCD. Both requests select index zero. The second refill replaces tag zero with tag one. Buses are hexadecimal.}\label{fig:system_conflict}
+\end{figure}
+
+\clearpage
+\section{Original Planning Diagrams}
+The supplied project diagrams record the earlier design. Their status
+labels refer to that planning stage. Figs.~\ref{fig:system_architecture}
+through \ref{fig:controller_fsm} show the implemented architecture and
+controller. The three-state sketch below was superseded by the four-state
+RTL, which has a separate RESPOND state.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth,height=.40\textheight,keepaspectratio]{planning/system_architecture.png}
+\caption{Original system architecture sketch from the planning stage.}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth,height=.29\textheight,keepaspectratio]{planning/controller_fsm.png}
+\caption{Original three-state controller proposal.}
+\end{figure}
+
+\clearpage
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth,height=.86\textheight,keepaspectratio]{planning/module_connections.png}
+\caption{Original module-connection diagrams. The delivered lookup instantiates a tag comparator, and the controller, memory model and both selectors are implemented.}
+\end{figure}
+
+\clearpage
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth,height=.86\textheight,keepaspectratio]{planning/cache_hit_miss_flow.png}
+\caption{Original hit and miss flow. The implemented flow and the regression waveforms are shown in Appendix~A.}
 \end{figure}
 \end{document}
