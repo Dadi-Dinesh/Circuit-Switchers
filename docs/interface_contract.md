@@ -200,7 +200,7 @@ The model must use deterministic contents and a documented nonzero latency. It m
 
 `cache_top` instantiates and wires all listed modules. It must not reimplement storage, hit detection, data selection, controller sequencing, or memory behavior.
 
-## 6. Ownership and pending hand-offs
+## 6. Ownership
 
 | Member | Owned integration files/modules |
 |---|---|
@@ -210,4 +210,4 @@ The model must use deterministic contents and a documented nonzero latency. It m
 | Member 04 | `cache_controller`, `main_memory_model`, FSM and memory-model documents |
 | Member 05 | System testbenches, traces, regression, metrics, waveforms, synthesis evidence |
 
-The current top-level skeleton becomes an executable complete cache only after Members 02-04 provide modules matching these ports and Member 05 supplies the system-level verification environment.
+All five work areas are delivered against these ports. `cache_top` connects the real modules, and `bash scripts/run_all_tests.sh` runs Member 05's regression. The milestone remains read-only because the project brief left the write policy open.

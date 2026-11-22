@@ -2,7 +2,7 @@
 
 Owner: **Member 04 - Cache Controller FSM and Main-Memory Model**
 
-This hand-off records the behavior required by the frozen interface. Member 04 owns the final `docs/fsm_design.md`, state diagram, and transition table matching `rtl/cache_controller.v`.
+This hand-off records the behavior required by the frozen interface. `rtl/cache_controller.v` satisfies it. The delivered states are `IDLE`, `LOOKUP`, `MEM_WAIT`, and `RESPOND`. Refill is the `mem_ready` cycle inside `MEM_WAIT`, not a separate state. The diagram, transition table, and timing are in `docs/fsm_design.md`.
 
 ## Required behavior from the shared interface
 
@@ -16,7 +16,7 @@ The controller must support these externally visible phases:
 6. When memory responds, pulse `refill_write_en` and return `refill_byte_data`.
 7. Pulse `resp_valid` for one cycle and become ready for the next request.
 
-Illustrative state names such as `IDLE`, `LOOKUP`, `MEM_WAIT`, `REFILL`, and `RESPOND` are acceptable, but the final names and cycle timing belong to Member 04. The implementation must follow `docs/interface_contract.md`.
+The delivered state names are `IDLE`, `LOOKUP`, `MEM_WAIT`, and `RESPOND`. The implementation follows `docs/interface_contract.md`.
 
 ## Acceptance points
 

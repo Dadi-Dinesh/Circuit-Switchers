@@ -79,7 +79,7 @@ Edge E0 is the rising edge that accepts the request. The memory latency is `LATE
 | Hit | E0 IDLE→LOOKUP, E1 LOOKUP→RESPOND | **2 cycles** |
 | Miss | E1 LOOKUP→MEM_WAIT, E2 memory accepts `mem_req`, E2+LATENCY `mem_ready` pulse, E3+LATENCY refill edge→RESPOND | **LATENCY + 4 cycles** (8 with the default) |
 
-**Miss penalty over a hit = LATENCY + 2 cycles** (6 cycles with the default). Member 05 should use these measured values for AMAT.
+**Miss penalty over a hit = LATENCY + 2 cycles** (6 cycles with the default). Member 05 used these measured values for AMAT in `results/metrics/amat_calculation.md`.
 
 Miss sequence with the default latency:
 

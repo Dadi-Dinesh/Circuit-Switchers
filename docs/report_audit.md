@@ -1,9 +1,12 @@
 # Phase I report audit
 
-The clean supplied clone and live GitHub main both resolved to
-`9a227c8fb9713d0b9284dcb9cd3ad7cb10bc733a`. The two planning PDFs
-describe scope and assignments. The RTL, Git history and current regression
-establish delivered behavior.
+## Current status
+
+HEAD is `8c425af29b5037dee67db09ea598c624f4284bfe`. The full Icarus Verilog regression passes with `bash scripts/run_all_tests.sh`. The prototype video is `submission/phase1-video/Circuit_Switchers_5min_Final_Architecture_Fixed.mp4`.
+
+The table below is the earlier audit against `9a227c8fb9713d0b9284dcb9cd3ad7cb10bc733a`. It records corrections to claims in the report at that baseline. The two planning PDFs describe scope and assignments.
+
+
 
 | Previous report claim | Actual implementation | Evidence | Correction |
 | --- | --- | --- | --- |
@@ -19,7 +22,7 @@ establish delivered behavior.
 | No Member 5 tests or measurements | Full-system scoreboard and workload entry points added for this milestone | `tb/tb_cache_system.v`, metrics and VCDs | Report freshly executed workload results |
 | Bibliography exists | All bibliography lines were commented out | Baseline report source | Restore checked references and resolve citations |
 | Editable Mermaid sources are tracked | Baseline tracks rendered files and a historical render manifest | `git ls-tree -r 9a227c8 submission/report/figures` | Supply editable replacements for stale diagrams |
-| Video remains unrecorded | Team recording and link have not been supplied | Submission inventory | Retain pending status and supply spoken script |
+| Video remains unrecorded | The recording was added after this audit | `submission/phase1-video/Circuit_Switchers_5min_Final_Architecture_Fixed.mp4` | Use the checked-in video |
 
 ## Bibliography checks
 

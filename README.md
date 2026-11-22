@@ -5,7 +5,7 @@
 Circuit Switchers is a five-member Verilog project implementing a 1 KB direct-mapped cache with 16-byte blocks and 32-bit byte addresses. The submission deadline is **16 November 2026**.
 
 This repository contains:
-- Member 01's address decoder, top-level integration skeleton, and interface contract;
+- Member 01's address decoder, top-level integration module, and interface contract;
 - Member 02's tested cache storage (data RAM, tag RAM, and valid-bit RAM);
 - Member 03's tested tag comparator, cache lookup decision logic, and 16-to-1 data selector;
 - Member 04's tested controller FSM and deterministic main-memory model.
@@ -46,15 +46,17 @@ Circuit-Switchers/
 |-- docs/
 |   |-- architecture.md
 |   |-- address_breakdown.md
+|   |-- address_decoder_test_plan.md
 |   |-- interface_contract.md
 |   |-- cache_storage.md
 |   |-- cache_lookup.md
-|   |-- address_decoder_test_plan.md
 |   |-- controller_requirements.md
 |   |-- fsm_design.md
 |   |-- memory_model.md
 |   |-- system_test_requirements.md
-|   `-- report/
+|   |-- test_plan.md
+|   |-- results_summary.md
+|   `-- report_audit.md
 |-- rtl/
 |   |-- address_decoder.v
 |   |-- cache_top.v
@@ -71,23 +73,35 @@ Circuit-Switchers/
 |   |-- tb_cache_storage.v
 |   |-- tb_cache_lookup.v
 |   |-- tb_cache_controller.v
+|   |-- tb_cache_system.v
+|   |-- tb_sequential_access.v
+|   |-- tb_repeated_access.v
+|   |-- tb_conflict_miss.v
+|   |-- tb_random_access.v
 |   `-- stubs/
 |       `-- cache_top_dependency_stubs.v
 |-- scripts/
+|   |-- run_all_tests.sh
+|   |-- run_sim.sh
 |   |-- run_address_decoder_test.sh
 |   |-- run_cache_storage_test.sh
 |   |-- run_cache_lookup_test.sh
 |   |-- run_cache_controller_test.sh
-|   |-- plot_controller_figures.py
 |   |-- check_cache_top.sh
-|   `-- capture_phase1_evidence.py
+|   |-- run_synthesis.sh
+|   |-- capture_phase1_evidence.py
+|   |-- plot_controller_figures.py
+|   `-- render_phase1_figures.py
 |-- results/
 |   |-- logs/
 |   |-- waveforms/
 |   |-- metrics/
 |   `-- synthesis/
 `-- submission/
-    `-- README_Submission.txt
+    |-- README_Submission.txt
+    |-- presentation/
+    |-- report/
+    `-- phase1-video/
 ```
 
 `tb/stubs/cache_top_dependency_stubs.v` holds the original compile-only placeholders for Member 04's modules. The real `rtl/cache_controller.v` and `rtl/main_memory_model.v` now replace them, so no script uses the stubs. Never compile the stubs together with the real files, because that defines each module twice.
@@ -336,4 +350,7 @@ Never force-push shared branches, commit generated simulation binaries, or silen
 - `docs/controller_requirements.md` hands the frozen controller requirements to Member 04.
 - `docs/fsm_design.md` gives the controller state diagram, state table, timing and test evidence.
 - `docs/memory_model.md` explains memory addressing, deterministic contents, block layout and latency.
-- `docs/system_test_requirements.md` hands verification requirements to Member 05 without occupying Member 05's final `docs/test_plan.md`.
+- `docs/system_test_requirements.md` records the verification requirements now covered by Member 05.
+- `docs/test_plan.md` describes the system workloads, traces, and pass criteria.
+- `docs/results_summary.md` summarizes the measured hit/miss results and AMAT.
+- `docs/report_audit.md` records the report corrections and the current evidence status.

@@ -24,6 +24,14 @@ Integrated and verified by Member 02:
 - docs/cache_storage.md
 - results/logs/cache_storage_final.log
 
+Integrated and verified by Member 03:
+- rtl/tag_comparator.v
+- rtl/cache_lookup.v
+- rtl/data_selector.v
+- tb/tb_cache_lookup.v
+- docs/cache_lookup.md
+- results/logs/cache_lookup_final.log
+
 Integrated and verified by Member 04:
 - rtl/cache_controller.v
 - rtl/main_memory_model.v
@@ -45,9 +53,10 @@ Current scope:
 - Integrated cache using the shared interface contract
 
 Member 05 evidence:
+- System benches: tb/tb_cache_system.v, tb/tb_sequential_access.v, tb/tb_repeated_access.v, tb/tb_conflict_miss.v, tb/tb_random_access.v
 - Test plan and results: docs/test_plan.md and docs/results_summary.md
+- Metrics: results/metrics/hit_miss_report.csv and results/metrics/amat_calculation.md
 - Complete regression: bash scripts/run_all_tests.sh
-- Generic synthesis: bash scripts/run_synthesis.sh
+- Generic synthesis: bash scripts/run_synthesis.sh and results/synthesis/yosys_final.txt
 - IEEE report: submission/report/circuit_switchers_ieee_report.pdf
-
-Prototype video: Recording pending.
+- Prototype video: submission/phase1-video/Circuit_Switchers_5min_Final_Architecture_Fixed.mp4

@@ -4,7 +4,7 @@
 
 Circuit Switchers is a Verilog implementation of a 1 KB direct-mapped cache controller for MCA Project 6. The cache keeps copies of 16-byte main-memory blocks so that repeated or nearby byte reads can complete faster than a new main-memory access.
 
-The repository contains Member 01's address decoder and top-level integration skeleton, and Member 02's cache storage. Hit detection, miss sequencing, refill control, and system verification depend on Members 03 and 04 and on Member 05.
+The repository contains the complete read-only cache. Member 01's decoder and `cache_top` connect Member 02's storage, Member 03's lookup and byte selection, and Member 04's controller and main-memory model. Member 05's system tests measure hits, misses, and AMAT.
 
 ## Why a cache helps
 
@@ -130,5 +130,5 @@ The next request to the same block can hit unless another address with the same 
 - Only one processor request may be active.
 - No write-through/write-back choice has been made.
 - No LRU logic is required because the cache is direct-mapped.
-- The Verilog main-memory model is a simulation component, not physical DRAM.
-- Full-cache operation is pending the other members' real modules; the top-level skeleton does not hide those missing dependencies.
+- The Verilog main-memory model is a simulation component, not physical DRAM. It is a 64 KB array, so addresses above that range alias, as described in `docs/memory_model.md`.
+- `cache_top` instantiates the delivered modules. The old compile-only stubs in `tb/stubs/` are not part of the build.

@@ -2,7 +2,7 @@
 
 Owner: **Member 05 - Verification, Performance, and Evidence**
 
-After Members 03 and 04 deliver their modules, system verification must include:
+Member 05 covered these requirements in `docs/test_plan.md`, the system testbenches, and `results/metrics/`:
 
 - cold-cache miss and refill;
 - repeated access becoming a hit;
@@ -15,4 +15,4 @@ After Members 03 and 04 deliver their modules, system verification must include:
 - hit/miss totals, rates, and AMAT with stated units;
 - reset during idle and agreed reset edge cases.
 
-The exact traces, random seed, expected data, measured results, and final `docs/test_plan.md` belong to Member 05 and must be based on executed simulations.
+The executed traces, random seed `0x6D2B79F5`, expected data checks, and measured AMAT are in `docs/test_plan.md`, `docs/results_summary.md`, and `results/metrics/`.
