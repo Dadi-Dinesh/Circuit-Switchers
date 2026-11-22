@@ -150,14 +150,14 @@ The `data_selector` module is instantiated **twice** in `cache_top.v`:
 
 ### Hand-off with Member 04 (Controller FSM)
 - **Sampling Window**: In the `LOOKUP` state, the controller inspects `lookup_hit`.
-  - If `lookup_hit == 1'b1`: The controller selects `cache_byte_data`, pulses `resp_valid = 1'b1`, asserts `resp_hit = 1'b1`, and returns to `IDLE` in 1 cycle.
-  - If `lookup_hit == 1'b0`: The controller asserts `mem_req = 1'b1` and transitions to `MEM_WAIT`. Once `mem_ready` arrives, the controller pulses `refill_write_en` to update storage and returns `refill_byte_data`.
+  - If `lookup_hit == 1'b1`: the controller latches `cache_byte_data` and sets `resp_hit` to 1, then enters `RESPOND`. `resp_valid` is high for that one response cycle. A hit takes 2 cycles from acceptance and does not assert `mem_req`.
+  - If `lookup_hit == 1'b0`: the controller enters `MEM_WAIT` and holds `mem_req` until `mem_ready`. On that cycle it pulses `refill_write_en`, latches `refill_byte_data`, and then completes through `RESPOND` with `resp_hit` 0.
 
 ### Hand-off with Member 05 (Verification & Performance)
 - **Conflict Address Review**: The same-index/different-tag conflict condition was reviewed and verified with Member 05:
   - Address 1: `0x00000000` (Tag `0x000000`, Index `0`)
   - Address 2: `0x00000400` (Tag `0x000001`, Index `0`)
-  - When alternating between these two addresses, both map to Cache Line 0, forcing continuous conflict evictions. Member 03's testbench explicitly verifies this exact sequence.
+  - When alternating between these two addresses, both map to Cache Line 0, forcing continuous conflict evictions. `tb/tb_cache_lookup.v` checks the tag decision, and `tb/tb_conflict_miss.v` checks the same pair on the integrated cache.
 
 ---
 

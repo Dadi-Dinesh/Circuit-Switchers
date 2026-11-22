@@ -43,7 +43,7 @@ Properties:
 - **All 16 bytes in a block differ**, because they differ in `a[3:0]`. A byte-lane or offset mistake is therefore visible.
 - **Conflicting blocks differ.** For example, block 0x000 starts `A5 A4 A7 …` and block 0x400 starts `A1 A0 A3 …`, so returning stale data after a replacement is detected.
 
-Testbenches compute the expected byte with the same expression (see `pattern_byte` in `tb/tb_cache_controller.v`). Member 05's system tests should reuse it.
+Testbenches compute the expected byte with the same expression (see `pattern_byte` in `tb/tb_cache_controller.v`). Member 05's system scoreboard uses that same rule.
 
 ## 4. Block layout
 
